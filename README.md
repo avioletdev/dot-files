@@ -5,7 +5,7 @@ A lightweight, modular, and performant ZSH configuration focused on productivity
 ## Showcase
 
 <p align="center">
-  <p align="center">Welcome Screen</p>
+  <p margin="0" align="center">Welcome Screen</p>
   <img width="912" height="778" alt="Welcome" src="https://github.com/user-attachments/assets/94327010-9810-480d-98d5-dbf88b2c2592" />
 </p>
 
