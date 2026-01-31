@@ -2,33 +2,6 @@
 
 A lightweight, modular, and performant ZSH configuration focused on productivity and clear visual feedback without the bloat of frameworks.
 
-## Showcase
-
-<p align="center">
-  <em>Welcome Screen</em>
-  <img width="1024" height="778" alt="Welcome" src="https://github.com/user-attachments/assets/94327010-9810-480d-98d5-dbf88b2c2592" />
-</p>
-
-<p align="center">
-  <em>Prompt Overview & Precision Timer</em>
-  <img width="1024" alt="Example" src="https://github.com/user-attachments/assets/f71557e2-7c75-4d8a-afa0-bace7ac23c80" />
-</p>
-
-<p align="center">
-  <p align="center">Click through to your files</p>
-  <img width="1024" alt="finder_open_example" src="https://github.com/user-attachments/assets/6285b54c-d610-4583-a1f7-ac24ff0722ba" />
-</p>
-
-<p align="center">
-  <p align="center">Fuzzy Repo Search (cr)</p>
-  <img width="1024" alt="cr_preview" src="https://github.com/user-attachments/assets/a71bda69-7061-487d-b545-3fde9565c689" />
-</p>
-
-<p align="center">
-  <p align="center">Fuzzy History Search (fh)</p>
-  <img width="1024" alt="fuzzy_history" src="https://github.com/user-attachments/assets/ea181b78-5f02-4e49-ab84-490b46be2a72" />
-</p>
-
 ## Overview
 
 This setup provides a highly customized Zsh prompt split into thematic modules. It emphasizes direct control over your shell environment, offering real-time Git status, environment detection, and smart navigation.
@@ -57,6 +30,33 @@ The configuration is organized into a `zsh/` directory for easy maintenance:
 - **Clickable Leaf**: Inside repositories, the "Leaf" folder segment is an active hyperlink.
 - **Cmd/Ctrl+Click**: Jump directly from your terminal to the current directory in Finder/Explorer using native terminal hyperlink support.
 - **Underline Suppression**: Uses special ANSI sequences to maintain a clean, solid look in supported terminal emulators.
+
+## Showcase
+
+<p align="center">
+  <em>Welcome Screen</em>
+  <img width="1024" height="778" alt="Welcome" src="https://github.com/user-attachments/assets/94327010-9810-480d-98d5-dbf88b2c2592" />
+</p>
+
+<p align="center">
+  <em>Prompt Overview & Precision Timer</em>
+  <img width="1024" alt="Example" src="https://github.com/user-attachments/assets/f71557e2-7c75-4d8a-afa0-bace7ac23c80" />
+</p>
+
+<p align="center">
+  <p align="center">Click through to your files</p>
+  <img width="1024" alt="finder_open_example" src="https://github.com/user-attachments/assets/6285b54c-d610-4583-a1f7-ac24ff0722ba" />
+</p>
+
+<p align="center">
+  <p align="center">Fuzzy Repo Search (cr)</p>
+  <img width="1024" alt="cr_preview" src="https://github.com/user-attachments/assets/a71bda69-7061-487d-b545-3fde9565c689" />
+</p>
+
+<p align="center">
+  <p align="center">Fuzzy History Search (fh)</p>
+  <img width="1024" alt="fuzzy_history" src="https://github.com/user-attachments/assets/ea181b78-5f02-4e49-ab84-490b46be2a72" />
+</p>
 
 ## Usage
 
