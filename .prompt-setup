@@ -1,11 +1,20 @@
 # Avery's Modular ZSH Prompt
 # Lightweight, modular, and performant
 
+# Guard: Ensure we are in Zsh
+if [ -z "$ZSH_VERSION" ]; then
+    echo "Error: This prompt configuration requires Zsh."
+    return 1 2>/dev/null || exit 1
+fi
+
 # Enable command substitution
 setopt PROMPT_SUBST
 
 # Source modules relative to this script
-ZSH_CONFIG_DIR="${0:A:h}/zsh"
+# We use the absolute path of the directory containing this script.
+# ${(%):-%x} is the most robust way in Zsh to get the current script's path when sourced.
+ZSH_CONFIG_DIR="${${(%):-%x}:A:h}/zsh"
+
 source "${ZSH_CONFIG_DIR}/theme.zsh"
 source "${ZSH_CONFIG_DIR}/utils.zsh"
 source "${ZSH_CONFIG_DIR}/git.zsh"
@@ -31,26 +40,36 @@ function check_zsh_prompt_setup() {
     # 2. Dependency Check
     local deps=("zoxide" "fzf")
     local missing_deps=()
+    local common_paths=("/opt/homebrew/bin" "/usr/local/bin" "/usr/bin" "/bin")
+    
     for dep in "${deps[@]}"; do
         if ! command -v "$dep" &> /dev/null; then
-            missing_deps+=("$dep")
+            # If not in PATH, check common locations directly
+            local found="false"
+            for p in "${common_paths[@]}"; do
+                if [[ -x "$p/$dep" ]]; then
+                    found="true"
+                    break
+                fi
+            done
+            [[ "$found" == "false" ]] && missing_deps+=("$dep")
         fi
     done
 
     # 3. Welcome Message & Visual Check
     echo -e "\n\033[1;34m✨ Avery's Modular Zsh Prompt\033[0m"
-    echo -e "\033[1;90mIcons    :\033[0m $symbol_list[heart] $symbol_list[git] $symbol_list[clock] $symbol_list[node] \033[0;32m(If icons look correct, you're all set!)\033[0m"
-    echo -e "\033[1;90mLigatures:\033[0m Test: |>  ->  => \033[0;32m(If these join, ligatures are active!)\033[0m"
-    echo -e "\033[1;90mNote:\033[0m If ligatures don't join, enable 'Font Ligatures' in your terminal settings."
+    printf "\033[1;90m%-12s\033[0m %s \033[0;32m(If icons look correct, you're all set!)\033[0m\n" "Icons:" "$symbol_list[heart] $symbol_list[git] $symbol_list[clock] $symbol_list[node]"
+    printf "\033[1;90m%-12s\033[0m %s \033[0;32m(If these join, ligatures are active!)\033[0m\n" "Ligatures:" "Test: |>  ->  =>"
+    printf "\033[1;90m%-12s\033[0m %s\n" "Note:" "If ligatures don't join, enable 'Font Ligatures' in your terminal settings."
     
     echo -e "\n\033[1;34m🚀 Navigation Commands:\033[0m"
-    echo -e "\033[0;96mcr [query]\033[0m  Fuzzy switch to any repo in ~/repos"
-    echo -e "\033[0;96mfh\033[0m          Fuzzy search command history"
-    echo -e "\033[0;96mz [dir]\033[0m       Smart jump using zoxide"
+    printf "\033[0;96m%-12s\033[0m %s\n" "cr [query]" "Fuzzy switch to any repo in ~/repos"
+    printf "\033[0;96m%-12s\033[0m %s\n" "fh"         "Fuzzy search command history"
+    printf "\033[0;96m%-12s\033[0m %s\n" "z [dir]"    "Smart jump using zoxide"
 
     if [[ ${#missing_deps[@]} -gt 0 ]]; then
         echo -e "\n\033[1;33m[!] Missing Dependencies:\033[0m ${missing_deps[*]}"
-        echo -e "Install them via Homebrew: \033[0;96mbrew install ${missing_deps[*]}\033[0m"
+        printf "\033[1;90m%-12s\033[0m \033[0;96mbrew install %s\033[0m\n" "Install:" "${missing_deps[*]}"
     fi
 
     echo -e "\n\033[1;33m,___,"
