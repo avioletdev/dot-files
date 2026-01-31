@@ -17,18 +17,21 @@ A lightweight, modular, and performant ZSH configuration focused on productivity
 
 <p align="center">
   <em>Click through to your files</em>
+  <p><br></p>
   <img width="900" height="600.88" alt="finder_open_example" src="https://github.com/user-attachments/assets/6285b54c-d610-4583-a1f7-ac24ff0722ba" />
 </p>
 
 
 <p align="center">
   <em>Fuzzy Repo Search (cr)</em>
+  <p><br></p>
   <img width="1024" alt="cr_preview" src="https://github.com/user-attachments/assets/a71bda69-7061-487d-b545-3fde9565c689" />
 </p>
 
 
 <p align="center">
   <em>Fuzzy History Search (fh)</em>
+  <p><br></p>
   <img width="1024" alt="fuzzy_history" src="https://github.com/user-attachments/assets/ea181b78-5f02-4e49-ab84-490b46be2a72" />
 </p>
 
