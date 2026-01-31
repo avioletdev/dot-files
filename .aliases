@@ -19,6 +19,6 @@ alias glol='git log --graph --oneline --decorate'
 alias gic='git init && git add -A && git commit -m "initial commit"'
 alias ghrc='gh repo create "${PWD##*/}" '
 
-## Muscle menory is hard!
+## Muscle memory is hard!
 alias cls='clear'
 
