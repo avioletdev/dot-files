@@ -17,13 +17,21 @@ render_segment() {
     # 2. Segment body
     res+="%K{$col}%F{$text_col} $content "
 
-    # 3. Transition slash (Powerline separator)
+    # 3. Transition symbol (Powerline separator)
     if [[ -n "$next_col" ]]; then
         # Boundary junction: Bridges two colors with zero gaps
-        res+="%K{$next_col}%F{$col}$symbol_list[slash]"
+        # Conditionally choose the separator glyph
+        local sep_glyph="$symbol_list[point_right]"
+        if [[ "$content" == *"${symbol_list[folder]}"* ]]; then
+            sep_glyph="$symbol_list[arrow]"
+        fi
+
+        res+="%K{$col}%F{$prompt_colors[white]}$sep_glyph"
+        res+="%K{$next_col}%F{$col}$symbol_list[powerline]"
     else
         # Final segment: Angle out into the terminal background
-        res+="%k%F{$col}$symbol_list[slash]%f"
+        # We keep the slanted slash at the end as requested
+        res+="%k%F{$col}$symbol_list[powerline]%f"
     fi
     
     echo -n "$res"
@@ -61,14 +69,45 @@ shrink_path() {
     echo -n "$path_in" | sed -E 's|/([^/.])([^/]{2,})(/)|/\1\3|g'
 }
 
+# Git repository path helpers
+get_git_root() {
+    if git rev-parse --is-inside-work-tree &> /dev/null; then
+        basename "$(git rev-parse --show-toplevel)"
+    fi
+}
+
+get_git_relative_path() {
+    if git rev-parse --is-inside-work-tree &> /dev/null; then
+        git rev-parse --show-prefix | sed 's|/$||'
+    fi
+}
+
+get_breadcrumb_info() {
+    local rel_path=$(get_git_relative_path)
+    if [[ -z "$rel_path" ]]; then
+        echo "0"
+        return
+    fi
+    
+    # Count segments by counting slashes + 1
+    local count=$(echo "$rel_path" | tr -cd '/' | wc -c)
+    count=$((count + 1))
+    echo "$count"
+}
+
+get_current_leaf() {
+    basename "$PWD"
+}
+
 path_info() {
     local raw_path
     if git rev-parse --is-inside-work-tree &> /dev/null; then
-        raw_path="$(basename $(git rev-parse --show-toplevel))"
+        # If in a repo, just return the root for the first segment
+        get_git_root
     else
         raw_path="${(%):-%~}"
+        shrink_path "$raw_path"
     fi
-    shrink_path "$raw_path"
 }
 
 get_project_subfolder() {

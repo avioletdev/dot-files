@@ -19,6 +19,7 @@ typeset -A symbol_list=(
     [staged]=$'\uf067'
     [dirty]=$'\uf040'
     [untracked]=$'\uf059'
+    [point_right]=$'\uf0da'
 )
 
 # Colors with fallback for 256 colors

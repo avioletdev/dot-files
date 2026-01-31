@@ -58,9 +58,8 @@ function check_zsh_prompt_setup() {
 
     # 3. Welcome Message & Visual Check
     echo -e "\n\033[1;34m✨ Avery's Modular Zsh Prompt\033[0m"
-    printf "\033[1;90m%-12s\033[0m %s \033[0;32m(If icons look correct, you're all set!)\033[0m\n" "Icons:" "$symbol_list[heart] $symbol_list[git] $symbol_list[clock] $symbol_list[node]"
-    printf "\033[1;90m%-12s\033[0m %s \033[0;32m(If these join, ligatures are active!)\033[0m\n" "Ligatures:" "Test: |>  ->  =>"
-    printf "\033[1;90m%-12s\033[0m %s\n" "Note:" "If ligatures don't join, enable 'Font Ligatures' in your terminal settings."
+    printf "\033[1;90m%-12s\033[0m %s \033[0;32m(If icons look correct, you're all set!)\033[0m\n" "Icons:" "$symbol_list[heart]|$symbol_list[git]|$symbol_list[clock]|$symbol_list[node]"
+    printf "\033[1;90m%-12s\033[0m %s \033[0;32m(If these join, ligatures are active!)\033[0m\n" "Ligatures:" "|> -> =>"
     
     echo -e "\n\033[1;34m🚀 Navigation Commands:\033[0m"
     printf "\033[0;96m%-12s\033[0m %s\n" "cr [query]" "Fuzzy switch to any repo in ~/repos"
@@ -94,26 +93,35 @@ function build_info_line() {
     local pathInfo=$(path_info)
 
     # 1. Collect segments and colors
-    segment_colors+=("${prompt_colors[one]}")
-    segment_contents+=("%n")
-    
-    segment_colors+=("${prompt_colors[two]}")
-    segment_contents+=("$pathInfo")
+    if is_git_repo; then
+        # Inside a repo: Repo first, NO username
+        segment_colors+=("${prompt_colors[one]}")
+        segment_contents+=("${symbol_list[git]} $(get_git_root)")
 
-    if is_git_repo ; then
-        segment_colors+=("${prompt_colors[three]}")
+        segment_colors+=("${prompt_colors[two]}")
         segment_contents+=("$(git_info)")
-        
-        if [[ "$basedir" != "$pathInfo" ]] ; then
-            segment_colors+=("${prompt_colors[four]}")
-            segment_contents+=("$(get_project_subfolder 6 "$pathInfo")")
-        fi
-    fi
 
-    local env_info=$(project_info)
-    if [[ -n "$env_info" ]]; then
-        segment_colors+=("${prompt_colors[five]}")
-        segment_contents+=("$env_info")
+        local breadcrumb=$(get_breadcrumb_info)
+        if [[ "$breadcrumb" -gt 0 ]]; then
+            segment_colors+=("${prompt_colors[three]}")
+            segment_contents+=("$breadcrumb ${symbol_list[folder]}")
+            
+            segment_colors+=("${prompt_colors[four]}")
+            segment_contents+=("$(get_current_leaf)")
+        fi
+    else
+        # Normal flow: Username first
+        segment_colors+=("${prompt_colors[one]}")
+        segment_contents+=("%n")
+        
+        segment_colors+=("${prompt_colors[two]}")
+        segment_contents+=("$pathInfo")
+
+        local env_info=$(project_info)
+        if [[ -n "$env_info" ]]; then
+            segment_colors+=("${prompt_colors[three]}")
+            segment_contents+=("$env_info")
+        fi
     fi
 
     # 2. Render with lookahead for seamless "handshake" transitions

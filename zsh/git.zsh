@@ -37,5 +37,5 @@ git_info() {
         [[ "$behind" -gt 0 ]] && ahead_behind+="↓$behind"
     fi
 
-    echo -n "${symbol_list[arrow]} ($ref$ahead_behind) $indicators ${symbol_list[git]}"
+    echo -n "($ref$ahead_behind) $indicators"
 }
