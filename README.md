@@ -5,6 +5,11 @@ A lightweight, modular, and performant ZSH configuration focused on productivity
 ## Showcase
 
 <p align="center">
+  <br><em>Welcome Screen</em>
+  <img width="903" height="484" alt="welcome_screen" src="https://github.com/user-attachments/assets/2263ab06-866a-4ea8-aae9-df6d58072926" />
+</p>
+
+<p align="center">
   <br><em>Prompt Overview & Precision Timer</em>
   <img width="1024" alt="prompt_overview" src="https://github.com/user-attachments/assets/196ac55b-fdc1-452c-af61-7f3bb5043d69" />
 </p>
