@@ -17,7 +17,7 @@ A lightweight, modular, and performant ZSH configuration focused on productivity
 
 <p align="center">
   <em>Click through to your files</em>
-  <img width="2714" height="1812" alt="finder_open_example" src="https://github.com/user-attachments/assets/6285b54c-d610-4583-a1f7-ac24ff0722ba" />
+  <img width="900" height="600.88" alt="finder_open_example" src="https://github.com/user-attachments/assets/6285b54c-d610-4583-a1f7-ac24ff0722ba" />
 </p>
 
 
