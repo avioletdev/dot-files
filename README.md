@@ -48,10 +48,15 @@ The configuration is organized into a `zsh/` directory for easy maintenance:
 - **`cr` (CD to Repo)**: Fuzzy search and jump to any repository in `~/repos/` with a live preview.
 - **`fh` (Fuzzy History)**: Quickly search and execute commands from your history.
 
-### 📊 Visual Feedback
-- **Command Status**: The primary prompt segment turns **Red** on failure.
-- **Command Timer**: Shows execution duration for long-running commands (e.g., `| 3s`) inside the main status pill.
-- **Path Shrinking**: Automatically contracts deep directory paths (e.g., `~/r/d/z/lib`) to keep your prompt compact.
+### 📍 Deep Repo Path Navigation
+- **Repo-First Layout**: Inside Git repositories, the prompt prioritizes the project name and hides the username for a cleaner workspace.
+- **Breadcrumb Depth**: Shows exactly how many levels deep you are from the repo root (e.g., `2 ➜`) using a concise numeric indicator.
+- **Leaf-Only Focus**: Suppresses intermediate directory names to keep the focus on the current subfolder.
+
+### 🖱️ Interactive Segments (OSC 8)
+- **Clickable Leaf**: Inside repositories, the "Leaf" folder segment is an active hyperlink.
+- **Cmd/Ctrl+Click**: Jump directly from your terminal to the current directory in Finder/Explorer using native terminal hyperlink support.
+- **Underline Suppression**: Uses special ANSI sequences to maintain a clean, solid look in supported terminal emulators.
 
 ## Usage
 

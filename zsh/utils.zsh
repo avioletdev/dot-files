@@ -6,6 +6,7 @@ render_segment() {
     local content=$3  # segment text
     local next_col=$4 # next segment background (for the transition slash)
     local text_col=${5:-$prompt_colors[white]}
+    local link_url=$6 # optional link URI
 
     local res=""
     
@@ -15,7 +16,16 @@ render_segment() {
     fi
 
     # 2. Segment body
-    res+="%K{$col}%F{$text_col} $content "
+    local body="%F{$text_col} $content "
+    if [[ -n "$link_url" ]]; then
+        # wrap in OSC 8 hyperlink escape sequences
+        # Use literal ESC ($'\e') and BEL ($'\a') characters
+        local esc=$'\e'
+        local bel=$'\a'
+        # Try to suppress underline with [24m (terminal-dependent)
+        body="%{${esc}]8;;${link_url}${bel}%}%{${esc}[24m%}${body}%{${esc}[24m%}%{${esc}]8;;${bel}%}"
+    fi
+    res+="%K{$col}${body}"
 
     # 3. Transition symbol (Powerline separator)
     if [[ -n "$next_col" ]]; then
@@ -70,6 +80,12 @@ shrink_path() {
 }
 
 # Git repository path helpers
+get_git_toplevel() {
+    if git rev-parse --is-inside-work-tree &> /dev/null; then
+        git rev-parse --show-toplevel 2>/dev/null
+    fi
+}
+
 get_git_root() {
     if git rev-parse --is-inside-work-tree &> /dev/null; then
         basename "$(git rev-parse --show-toplevel)"
