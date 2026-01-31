@@ -1,68 +1,69 @@
 # Avery's Dot Files
 
-This repository contains my personal configuration files (dot files) for customizing my development environment.
+A lightweight, modular, and performant ZSH configuration focused on productivity and clear visual feedback without the bloat of frameworks.
 
-![Terminal Preview](preview.png)
+## Showcase
 
-## Table of Contents
-
-- [Overview](#overview)
-- [Features](#features)
-- [Utility Scripts & Aliases](#utility-scripts--aliases)
-- [Usage](#usage)
-- [Customization](#customization)
-
-## Overview
-
-This configuration focuses on customizing the ZSH prompt directly, without relying on frameworks like Oh-My-ZSH or other external libraries. It's a lightweight approach that gives me exactly what I need without the overhead of larger solutions.
-
-## Features
-
-- Custom ZSH prompt styling
-- Personal terminal configuration
-- Development environment info
-
-## Utility Scripts & Aliases
-
-This setup includes a collection of custom utility scripts and aliases to streamline common development tasks and increase productivity. These shortcuts help automate repetitive commands and provide quick access to frequently used functions.
-
-![Utility Aliases Example](alias_example_util.png)
-
-## Usage
-
-1. Clone this repository
-2. Symlink or copy the desired configuration files to your home directory
-3. Restart your terminal to see the changes
-
-## Customization
-
-Feel free to fork this repository and modify it to suit your preferences!
+````carousel
+![Prompt Overview](prompt_overview.png)
+<!-- slide -->
+![Project Context & Git Info](project_context.png)
+<!-- slide -->
+![Fuzzy Repo Search (cr)](cr_preview.png)
+<!-- slide -->
+![Fuzzy History Search (fh)](fuzzy_history.png)
+````
 
 ## Overview
 
-This configuration focuses on customizing the ZSH prompt directly, without relying on frameworks like Oh-My-ZSH or other external libraries. It's a lightweight approach that gives me exactly what I need without the overhead of larger solutions.
+This setup provides a highly customized Zsh prompt split into thematic modules. It emphasizes direct control over your shell environment, offering real-time Git status, environment detection, and smart navigation.
 
-## Features
+## Key Features
 
-- Custom ZSH prompt styling
-- Personal terminal configuration
-- Development environment info
+### 🚀 Modular Configuration
+The configuration is organized into a `zsh/` directory for easy maintenance:
+- **[theme.zsh](zsh/theme.zsh)**: Centralized symbols and hand-picked color palette.
+- **[git.zsh](zsh/git.zsh)**: Detailed status (staged, dirty, untracked) and ahead/behind tracking.
+- **[env.zsh](zsh/env.zsh)**: Smart detection for Node.js, Rust, Python (including VirtualEnvs), Go, and Ruby.
+- **[utils.zsh](zsh/utils.zsh)**: Helper functions, path shrinking, and command duration tracking.
+- **[nav.zsh](zsh/nav.zsh)**: Fuzzy navigation tools.
+
+### 🔍 Smart Navigation
+- **Zoxide Integration**: Uses `z` for jumping to frequent directories based on history.
+- **`cr` (CD to Repo)**: Fuzzy search and jump to any repository in `~/repos/` with a live preview.
+- **`fh` (Fuzzy History)**: Quickly search and execute commands from your history.
+
+### 📊 Visual Feedback
+- **Command Status**: The primary prompt segment turns **Red** on failure.
+- **Command Timer**: Shows execution duration for long-running commands (e.g., `| 3s`) inside the main status pill.
+- **Path Shrinking**: Automatically contracts deep directory paths (e.g., `~/r/d/z/lib`) to keep your prompt compact.
 
 ## Usage
 
-1. Clone this repository
-2. Symlink or copy the desired configuration files to your home directory or refernce them in your .profile etc? many option!
-3. Restart your terminal to see the changes
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/your-username/dot-files.git ~/repos/dot-files
+   ```
 
-## Customization
+2. **Source the configuration**:
+   Add the following line to your `~/.zshrc`:
+   ```bash
+   source ~/repos/dot-files/.prompt-setup
+   ```
 
-Feel free to fork this repository and modify it to suit your preferences!
+3. **Requirements**:
+   - **[Nerd Fonts](https://www.nerdfonts.com/)**: Required for the icons (e.g., JetBrainsMono Nerd Font).
+   - **[fzf](https://github.com/junegunn/fzf)**: Required for fuzzy navigation.
+   - **[zoxide](https://github.com/ajeetdsouza/zoxide)**: Optional but recommended for the `z` command.
 
-## Future Plans
+## Utility Aliases
 
-I'm exploring several new development opportunities to enhance this configuration:
+Included in [.aliases](.aliases) are shortcuts for common Git commands:
+- `gs`: git status
+- `ga`: git add
+- `gc`: git commit -m
+- `gp`: git push
+- ...and more.
 
-- **Rust & Lua Utilities**: Planning to develop additional utility scripts in these languages for better performance and flexibility
-- **Swift CLI Timer App**: Working on a terminal-based timer to encourage regular movement throughout the day
-
-These projects will not only improve my productivity but also serve as valuable learning experiences in languages I'm looking to master.
+---
+*Inspired by the M365 Princess theme, rebuilt for speed and modularity.*

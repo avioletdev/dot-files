@@ -1,171 +1,74 @@
-# Inspired by the M365 Princess theme usually available on Oh-My-ZSH
-# Enable command substitution in prompt
+# Avery's Modular ZSH Prompt
+# Lightweight, modular, and performant
+
+# Enable command substitution
 setopt PROMPT_SUBST
 
-# Symbols
-typeset -A symbol_list=(
-    [powerline]=$'\ue0b0'
-    [slash]=$'\ue0b8'
-    [heart]=$'\u2764'
-    [arrow]=$'\u279c'
-    [stash]=$'\ueb4b'
-    [node]=$'\ue718'
-    [round_left]=$'\ue0b6'
-    [round_right]=$'\ue0b4'
-    [folder]=$'\uf07c'
-    [git]=$'\ue725'
-    [open_folder]=$'\uF115'
-    [rust]=$'\ue7a8'
-)
+# Source modules relative to this script
+ZSH_CONFIG_DIR="${0:A:h}/zsh"
+source "${ZSH_CONFIG_DIR}/theme.zsh"
+source "${ZSH_CONFIG_DIR}/utils.zsh"
+source "${ZSH_CONFIG_DIR}/git.zsh"
+source "${ZSH_CONFIG_DIR}/env.zsh"
+source "${ZSH_CONFIG_DIR}/nav.zsh"
 
-# Colors with fallback for 256 colors
-typeset -A colors
-if [[ "$COLORTERM" == "truecolor" ]] || [[ "$TERM" == *"24bit"* ]]; then
-    colors=(
-        [white]='#FFFFFF'
-        [one]='#D52D00'
-        [two]='#EF7627'
-        [three]='#FF9A56'
-        [four]='#D162A4'
-        [five]='#B55690'
-        [six]='#A30262'
-    )
-else
-    colors=(
-        [white]='255'
-        [one]='160'
-        [two]='208'
-        [three]='215'
-        [four]='169'
-        [five]='132'
-        [six]='125'
-    )
+# Initialize zoxide (if installed)
+if command -v zoxide &> /dev/null; then
+    eval "$(zoxide init zsh)"
 fi
-
-
-# segment helper - Helps to keep them consistent
-wrap_segment() {
-    local -a segment
-    local start=$1 # is this the start of the line "true or false"
-    local segment_color=$2 # the color for this segment main color passed in as hex
-    local content=$3 # segment content
-
-    segment="%f"
-    if [[ $start == "true" ]]; then
-        segment+="%F{$segment_color}$symbol_list[round_left]"
-    else
-        segment+="%k%F%K{$segment_color}${symbol_list[slash]}"
-    fi
-    segment+="%K{$segment_color}%F{$colors[white]} $content %k%F{$segment_color}${symbol_list[slash]}"
-    
-    echo $segment
-}
-
-git_info() {
-    local ref
-    ref=$(command git symbolic-ref HEAD 2> /dev/null) || \
-    ref=$(command git rev-parse --short HEAD 2> /dev/null) || return 0
-    echo " ${symbol_list[arrow]} (${ref#refs/heads/}$(git_stash_count)) ${symbol_list[git]}"
-}
-
-git_stash_count() {
-    local stash_count
-    stash_count=$(git stash list 2>/dev/null | wc -l | tr -d ' ')
-    [[ "$stash_count" -gt 0 ]] && echo " ${symbol_list[stash]} ${stash_count}"
-}
-
-is_git_repo() {
-    git rev-parse --is-inside-work-tree &> /dev/null
-}
-
-get_rust_version() {
-    local rust_version
-    rust_version=$(rustc --version 2> /dev/null)
-    if [[ $? -eq 0 ]]; then
-        echo "${symbol_list[rust]} v${rust_version#* }"
-    else
-        echo "${symbol_list[rust]} unavailable"
-    fi
-}
-
-get_node_version() {
-    local node_version
-    node_version=$(node -v 2> /dev/null)
-    if [[ $? -eq 0 ]]; then
-        echo "${symbol_list[node]} v${node_version#*v}"
-    else
-        echo "${symbol_list[node]} unavailable"
-    fi
-}
-
-get_python_venv() {
-    local venv
-    venv=$(python3 -c 'import sys; print(sys.prefix)' 2> /dev/null)
-    if [[ $? -eq 0 ]]; then
-        echo "python: v$(basename $venv)"
-    else
-        echo "python unavailable"
-    fi
-}
-
-# This is not an exhaustive list, but it is easily extensible
-project_info() {
-    if [ -f "Cargo.toml" ]; then
-        get_rust_version
-        return
-    fi
-
-    if [ -f "package.json" ]; then
-        get_node_version
-        return
-    fi
-    if [ -f 'pipfile' ]; then
-        get_python_venv
-        return
-    fi
-    echo "$symbol_list[arrow] $symbol_list[folder]"
-}
-
-path_info() {
-    if is_git_repo; then
-        echo "$(basename $(git rev-parse --show-toplevel))"
-    else
-        echo "%~"
-    fi
-}
-
-get_project_subfolder() {
-    local segmentsToShow=$1 # number of segments to show
-    local removeString=$2 # string to remove
-    echo ${(%):-%${segmentsToShow}~} | sed -e "s/.*${removeString}//g"
-}
 
 function build_info_line() {
     local -a segments
-    local -a basedir
-    local -a pathInfo
-    local -a lastTwoDirSegments
-    basedir=$(basename $(pwd))   
-    pathInfo=$(path_info)
+    local basedir=$(basename "$(pwd)")
+    local pathInfo=$(path_info)
+    local last_status=$?
 
-    segments+="$(wrap_segment "true" "${colors[one]}" ${(%):-%n})"
+    # Segment 1: User
+    segments+="$(wrap_segment "true" "${prompt_colors[one]}" "%n")"
     
-    segments+="$(wrap_segment "false" "${colors[two]}" "$pathInfo")"
+    # Segment 2: Path/Project Root
+    segments+="$(wrap_segment "false" "${prompt_colors[two]}" "$pathInfo")"
 
+    # Git Info if applicable
     if is_git_repo ; then
-        segments+="$(wrap_segment "false" "${colors[three]}" "$(git_info)")"
+        segments+="$(wrap_segment "false" "${prompt_colors[three]}" "$(git_info)")"
+        
+        # Subfolder info if deep in git repo
+        if [[ "$basedir" != "$pathInfo" ]] ; then
+            segments+="$(wrap_segment "false" "${prompt_colors[four]}" "$(get_project_subfolder 6 "$pathInfo")")"
+        fi
     fi
-    if is_git_repo && [[ "$basedir" != "$pathInfo" ]] ; then
-        segments+="$(wrap_segment "false" "${colors[four]}" "$(get_project_subfolder 6 $pathInfo)")"
+
+    # Environment/Project Info
+    local env_info=$(project_info)
+    if [[ -n "$env_info" ]]; then
+        segments+="$(wrap_segment "false" "${prompt_colors[five]}" "$env_info")"
     fi
-    if is_git_repo && [[ "$basedir" == "$pathInfo" ]] ; then
-        segments+="$(wrap_segment "false" "${colors[five]}" "$(project_info)")"
-    fi
+
     echo "${(j::)segments}"
 }
 
-precmd() {
-    print -P "\n$(build_info_line)\n"
+# Hooks
+preexec() {
+    timer_start
 }
 
-PROMPT="%k%F{$colors[six]}$symbol_list[round_left]%K{$colors[six]}%F{$colors[white]} ${symbol_list[heart]} $(date '+%H:%M') %k%F{$colors[six]}$symbol_list[round_right] %f|> "
+precmd() {
+    local last_status=$?
+    # Determine heart color based on last command status
+    local heart_color="${prompt_colors[six]}"
+    [[ $last_status -ne 0 ]] && heart_color="${prompt_colors[red]}"
+
+    # Command Duration
+    local duration=$(timer_stop)
+    local timer_str=""
+    [[ -n "$duration" ]] && timer_str=" | $duration"
+
+    # Build the info line once per prompt
+    INFO_LINE=$(build_info_line)
+    
+    # Assembly PROMPT
+    PROMPT="%k%F{${heart_color}}${symbol_list[round_left]}%K{${heart_color}}%F{${prompt_colors[white]}} ${symbol_list[heart]} $(date '+%H:%M')$timer_str %k%F{${heart_color}}${symbol_list[round_right]} %f|> "
+    
+    print -P "\n${INFO_LINE}\n"
+}
