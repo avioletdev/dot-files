@@ -5,23 +5,23 @@ A lightweight, modular, and performant ZSH configuration focused on productivity
 ## Showcase
 
 <p align="center">
-  <img width="1024" alt="prompt_overview" src="https://github.com/user-attachments/assets/196ac55b-fdc1-452c-af61-7f3bb5043d69" />
   <br><em>Prompt Overview & Precision Timer</em>
+  <img width="1024" alt="prompt_overview" src="https://github.com/user-attachments/assets/196ac55b-fdc1-452c-af61-7f3bb5043d69" />
 </p>
 
 <p align="center">
-  <img width="1024" alt="project_context" src="https://github.com/user-attachments/assets/98024a8b-5e8c-4e9b-affb-93b2897c0077" />
   <br><em>Project Context & Git Info</em>
+  <img width="1024" alt="project_context" src="https://github.com/user-attachments/assets/98024a8b-5e8c-4e9b-affb-93b2897c0077" />
 </p>
 
 <p align="center">
+<br><em>Fuzzy Repo Search (cr)</em>
   <img width="1024" alt="cr_preview" src="https://github.com/user-attachments/assets/a71bda69-7061-487d-b545-3fde9565c689" />
-  <br><em>Fuzzy Repo Search (cr)</em>
 </p>
 
 <p align="center">
-  <img width="1024" alt="fuzzy_history" src="https://github.com/user-attachments/assets/ea181b78-5f02-4e49-ab84-490b46be2a72" />
   <br><em>Fuzzy History Search (fh)</em>
+  <img width="1024" alt="fuzzy_history" src="https://github.com/user-attachments/assets/ea181b78-5f02-4e49-ab84-490b46be2a72" />
 </p>
 
 ## Overview
