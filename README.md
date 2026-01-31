@@ -5,13 +5,13 @@ A lightweight, modular, and performant ZSH configuration focused on productivity
 ## Showcase
 
 ````carousel
-![Prompt Overview](prompt_overview.png)
+![Prompt Overview](prompt_overview.png)<img width="1024" height="851" alt="prompt_overview" src="https://github.com/user-attachments/assets/196ac55b-fdc1-452c-af61-7f3bb5043d69" />
 <!-- slide -->
-![Project Context & Git Info](project_context.png)
+<img width="1024" height="851" alt="project_context" src="https://github.com/user-attachments/assets/98024a8b-5e8c-4e9b-affb-93b2897c0077" />
 <!-- slide -->
-![Fuzzy Repo Search (cr)](cr_preview.png)
+<img width="1024" height="851" alt="cr_preview" src="https://github.com/user-attachments/assets/a71bda69-7061-487d-b545-3fde9565c689" />
 <!-- slide -->
-![Fuzzy History Search (fh)](fuzzy_history.png)
+<img width="1024" height="851" alt="fuzzy_history" src="https://github.com/user-attachments/assets/ea181b78-5f02-4e49-ab84-490b46be2a72" />
 ````
 
 ## Overview
