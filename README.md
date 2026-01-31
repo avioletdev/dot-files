@@ -61,7 +61,13 @@ The configuration is organized into a `zsh/` directory for easy maintenance:
    source ~/repos/dot-files/.prompt-setup
    ```
 
-3. **Requirements**:
+3. **Optional Configuration**:
+   To hide the one-time welcome and health check message, add this to your `~/.zshrc`:
+   ```bash
+   export ZSH_PROMPT_SKIP_CHECK=1
+   ```
+
+4. **Requirements**:
    - **[Nerd Fonts](https://www.nerdfonts.com/)**: Required for the icons (e.g., JetBrainsMono Nerd Font).
    - **[fzf](https://github.com/junegunn/fzf)**: Required for fuzzy navigation.
    - **[zoxide](https://github.com/ajeetdsouza/zoxide)**: Optional but recommended for the `z` command.

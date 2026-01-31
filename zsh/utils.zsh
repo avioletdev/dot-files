@@ -1,19 +1,32 @@
-# segment helper
-wrap_segment() {
-    local start=$1 # "true" or "false"
-    local segment_color=$2 # color key or hex
-    local content=$3
-    local text_color=${4:-$prompt_colors[white]}
+# Stateless Powerline Segment Renderer
+# Ensures seamless transitions by bridging current and next colors
+render_segment() {
+    local is_start=$1 # "true" or "false"
+    local col=$2      # current segment background
+    local content=$3  # segment text
+    local next_col=$4 # next segment background (for the transition slash)
+    local text_col=${5:-$prompt_colors[white]}
 
-    local segment="%f"
-    if [[ $start == "true" ]]; then
-        segment+="%F{$segment_color}$symbol_list[round_left]"
-    else
-        segment+="%k%F%K{$segment_color}${symbol_list[slash]}"
-    fi
-    segment+="%K{$segment_color}%F{$text_color} $content %k%F{$segment_color}${symbol_list[slash]}"
+    local res=""
     
-    echo -n $segment
+    # 1. Start of line: Round left cap
+    if [[ "$is_start" == "true" ]]; then
+        res+="%f%k%F{$col}$symbol_list[round_left]"
+    fi
+
+    # 2. Segment body
+    res+="%K{$col}%F{$text_col} $content "
+
+    # 3. Transition slash (Powerline separator)
+    if [[ -n "$next_col" ]]; then
+        # Boundary junction: Bridges two colors with zero gaps
+        res+="%K{$next_col}%F{$col}$symbol_list[slash]"
+    else
+        # Final segment: Angle out into the terminal background
+        res+="%k%F{$col}$symbol_list[slash]%f"
+    fi
+    
+    echo -n "$res"
 }
 
 # Command duration tracking (requires zsh/datetime)
