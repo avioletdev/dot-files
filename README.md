@@ -43,21 +43,6 @@ The configuration is organized into a `zsh/` directory for easy maintenance:
   <img width="1024" alt="Example" src="https://github.com/user-attachments/assets/f71557e2-7c75-4d8a-afa0-bace7ac23c80" />
 </p>
 
-<p align="center">
-  <p align="center">Click through to your files</p>
-  <img width="1024" alt="finder_open_example" src="https://github.com/user-attachments/assets/6285b54c-d610-4583-a1f7-ac24ff0722ba" />
-</p>
-
-<p align="center">
-  <p align="center">Fuzzy Repo Search (cr)</p>
-  <img width="1024" alt="cr_preview" src="https://github.com/user-attachments/assets/a71bda69-7061-487d-b545-3fde9565c689" />
-</p>
-
-<p align="center">
-  <p align="center">Fuzzy History Search (fh)</p>
-  <img width="1024" alt="fuzzy_history" src="https://github.com/user-attachments/assets/ea181b78-5f02-4e49-ab84-490b46be2a72" />
-</p>
-
 ## Usage
 
 1. **Clone the repository**:
