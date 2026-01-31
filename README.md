@@ -4,28 +4,31 @@ A lightweight, modular, and performant ZSH configuration focused on productivity
 
 ## Showcase
 
-<em>Welcome Screen</em><br />
 <p align="center">
+  <em>Welcome Screen</em>
   <img width="912" height="778" alt="Welcome" src="https://github.com/user-attachments/assets/94327010-9810-480d-98d5-dbf88b2c2592" />
 </p>
 
 <p align="center">
-  <em>Prompt Overview & Precision Timer</em><br />
+  <em>Prompt Overview & Precision Timer</em>
   <img width="912" height="778" alt="Example" src="https://github.com/user-attachments/assets/f71557e2-7c75-4d8a-afa0-bace7ac23c80" />
 </p>
 
-<em>Click through to your files</em><br />
+
 <p align="center">
+  <em>Click through to your files</em>
   <img width="2714" height="1812" alt="finder_open_example" src="https://github.com/user-attachments/assets/6285b54c-d610-4583-a1f7-ac24ff0722ba" />
 </p>
 
-<em>Fuzzy Repo Search (cr)</em><br />
+
 <p align="center">
+  <em>Fuzzy Repo Search (cr)</em>
   <img width="1024" alt="cr_preview" src="https://github.com/user-attachments/assets/a71bda69-7061-487d-b545-3fde9565c689" />
 </p>
 
-<em>Fuzzy History Search (fh)</em><br />
+
 <p align="center">
+  <em>Fuzzy History Search (fh)</em>
   <img width="1024" alt="fuzzy_history" src="https://github.com/user-attachments/assets/ea181b78-5f02-4e49-ab84-490b46be2a72" />
 </p>
 
