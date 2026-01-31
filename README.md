@@ -6,17 +6,17 @@ A lightweight, modular, and performant ZSH configuration focused on productivity
 
 <p align="center">
   <br><em>Welcome Screen</em>
-  <img width="903" height="484" alt="welcome_screen" src="https://github.com/user-attachments/assets/2263ab06-866a-4ea8-aae9-df6d58072926" />
+  <img width="912" height="778" alt="Welcome" src="https://github.com/user-attachments/assets/94327010-9810-480d-98d5-dbf88b2c2592" />
 </p>
 
 <p align="center">
   <br><em>Prompt Overview & Precision Timer</em>
-  <img width="1024" alt="prompt_overview" src="https://github.com/user-attachments/assets/196ac55b-fdc1-452c-af61-7f3bb5043d69" />
+  <img width="912" height="778" alt="Example" src="https://github.com/user-attachments/assets/f71557e2-7c75-4d8a-afa0-bace7ac23c80" />
 </p>
 
 <p align="center">
-  <br><em>Project Context & Git Info</em>
-  <img width="1024" alt="project_context" src="https://github.com/user-attachments/assets/98024a8b-5e8c-4e9b-affb-93b2897c0077" />
+  <br><em>Click through to your files</em>
+  <img width="2714" height="1812" alt="finder_open_example" src="https://github.com/user-attachments/assets/6285b54c-d610-4583-a1f7-ac24ff0722ba" />
 </p>
 
 <p align="center">
