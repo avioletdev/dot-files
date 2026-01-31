@@ -10,24 +10,23 @@ A lightweight, modular, and performant ZSH configuration focused on productivity
 </p>
 
 <p align="center">
-  <em></em>
+  <p>Prompt Overview & Precision Timer</p>
   <img width="912" height="778" alt="Example" src="https://github.com/user-attachments/assets/f71557e2-7c75-4d8a-afa0-bace7ac23c80" />
-  <figcaption>Prompt Overview & Precision Timer</figcaption>
 </p>
 
 <p align="center">
+  <p>Click through to your files</p>
   <img width="900" height="600.88" alt="finder_open_example" src="https://github.com/user-attachments/assets/6285b54c-d610-4583-a1f7-ac24ff0722ba" />
-  <figcaption>Click through to your files</figcaption>
 </p>
 
 <p align="center">
+  <p>Fuzzy Repo Search (cr)</p>
   <img width="1024" alt="cr_preview" src="https://github.com/user-attachments/assets/a71bda69-7061-487d-b545-3fde9565c689" />
-  <figcaption>Fuzzy Repo Search (cr)</figcaption>
 </p>
 
 <p align="center">
+  <p>Fuzzy History Search (fh)</p>
   <img width="1024" alt="fuzzy_history" src="https://github.com/user-attachments/assets/ea181b78-5f02-4e49-ab84-490b46be2a72" />
-  <figcaption>Fuzzy History Search (fh)</figcaption>
 </p>
 
 ## Overview
