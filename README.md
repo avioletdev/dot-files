@@ -5,18 +5,18 @@ A lightweight, modular, and performant ZSH configuration focused on productivity
 ## Showcase
 
 <p align="center">
-  <p margin="0" align="center">Welcome Screen</p>
-  <img width="912" height="778" alt="Welcome" src="https://github.com/user-attachments/assets/94327010-9810-480d-98d5-dbf88b2c2592" />
+  <em>Welcome Screen</em>
+  <img width="1024" height="778" alt="Welcome" src="https://github.com/user-attachments/assets/94327010-9810-480d-98d5-dbf88b2c2592" />
 </p>
 
 <p align="center">
-  <p align="center">Prompt Overview & Precision Timer</p>
-  <img width="912" height="778" alt="Example" src="https://github.com/user-attachments/assets/f71557e2-7c75-4d8a-afa0-bace7ac23c80" />
+  <em>Prompt Overview & Precision Timer</em>
+  <img width="1024" alt="Example" src="https://github.com/user-attachments/assets/f71557e2-7c75-4d8a-afa0-bace7ac23c80" />
 </p>
 
 <p align="center">
   <p align="center">Click through to your files</p>
-  <img width="900" height="600.88" alt="finder_open_example" src="https://github.com/user-attachments/assets/6285b54c-d610-4583-a1f7-ac24ff0722ba" />
+  <img width="1024" alt="finder_open_example" src="https://github.com/user-attachments/assets/6285b54c-d610-4583-a1f7-ac24ff0722ba" />
 </p>
 
 <p align="center">
